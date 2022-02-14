@@ -52,26 +52,42 @@
         </div>
 </header>
 <script>
+    function count_checker(str){
+        if(str.length === 5){
+            alert("Empty. Please input the values")
+        }
+        else {
+            let count = new Map();
+            for (let index = 0; index < str.length; index++) {
+                let tempValue = 0;
+                if (count.has(str[index])) {
+                    tempValue = count.get(str[index]);
+                }
+                count.set(str[index], k);
+            }
+            let outputValues = Array.from(count.values());
+            while (true) {
+                let start = 0;
+                let end = outputValues.length - 1;
+                if (end === 1) {
+                    return outputValues[0] + outputValues[1];
+                }
+                while (start < end) {
+                    outputValues[start] = outputValues[start] + outputValues[end];
+                    outputValues.slice(start, end);
+                    end--;
+                }
+            }
+        }
+    }
     function checkLovePer(){
         const yourName = document.getElementById('yourName').value.toLowerCase();
         const loverName = document.getElementById('loverName').value.toLowerCase();
-        const lower_case_string = yourName + loverName;
-        let percentage;
+        const lower_case_string = yourName + "loves" + loverName;
 
-        let loveData = (lower_case_string.match(/t/g)).length;
-        loveData += (lower_case_string.match(/r/g)).length;
-        loveData += (lower_case_string.match(/u/g)).length;
-        loveData += (lower_case_string.match(/e/g)).length;
+        let loveData = count_checker(lower_case_string);
 
-        percentage = loveData;
-        loveData = 0;
-        loveData += (lower_case_string.match(/l/g)).length;
-        loveData += (lower_case_string.match(/o/g)).length;
-        loveData += (lower_case_string.match(/v/g)).length;
-        loveData += (lower_case_string.match(/e/g)).length;
-        percentage += " " + loveData;
-
-        document.getElementById('loveValue').value = percentage + "%";
+        document.getElementById('loveValue').value = loveData + "%";
     }
 
 </script>
