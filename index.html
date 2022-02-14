@@ -63,19 +63,20 @@
                 if (count.has(str[index])) {
                     tempValue = count.get(str[index]);
                 }
-                count.set(str[index], k);
+                count.set(str[index], tempValue + 1);
             }
             let outputValues = Array.from(count.values());
             while (true) {
                 let start = 0;
                 let end = outputValues.length - 1;
                 if (end === 1) {
-                    return outputValues[0] + outputValues[1];
+                    return outputValues[0] + "" + outputValues[1];
                 }
                 while (start < end) {
                     outputValues[start] = outputValues[start] + outputValues[end];
-                    outputValues.slice(start, end);
+                    outputValues = outputValues.slice(0, end);
                     end--;
+                    start++;
                 }
             }
         }
